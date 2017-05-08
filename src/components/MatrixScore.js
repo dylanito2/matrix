@@ -5,61 +5,52 @@ class MatrixScore extends React.Component {
 
   constructor(props) {
     super(props)
-    this.renderScore = this.renderScore.bind(this)
     this.processData = this.processData.bind(this)
   }
 
-  fill(matrix, i, j, rowLen, colLen) {
-    let arr = matrix.slice()
-    if (i < 0 || i >= rowLen || j < 0 || j >= colLen) {
-      return 0;
+  fill(matrix, i, j) {
+
+    let rowLength = matrix.length;
+    let colLength = matrix[0].length;
+    if (i < 0 || i >= rowLength || j < 0 || j >= colLength) {
+      return 0
     }
-    else if (arr[i][j]) {
-      arr[i][j] = 0;
-      return 1 + this.fill(arr, i-1, j, rowLen, colLen)
-      + this.fill(arr, i, j-1, rowLen, colLen)
-      + this.fill(arr, i-1, j-1, rowLen, colLen)
-      + this.fill(arr, i+1, j, rowLen, colLen)
-      + this.fill(arr, i, j+1, rowLen, colLen)
-      + this.fill(arr, i+1, j+1, rowLen, colLen)
-      + this.fill(arr, i+1, j-1, rowLen, colLen)
-      + this.fill(arr, i-1, j+1, rowLen, colLen);
+    else if (matrix[i][j]) {
+
+      matrix[i][j] = 0;
+      return 1 + this.fill(matrix, i-1, j)
+      + this.fill(matrix, i, j-1)
+      + this.fill(matrix, i-1, j-1)
+      + this.fill(matrix, i+1, j)
+      + this.fill(matrix, i, j+1)
+      + this.fill(matrix, i+1, j+1)
+      + this.fill(matrix, i+1, j-1)
+      + this.fill(matrix, i-1, j+1);
     }
-    return 0;
+    return 0
   }
 
   processData() {
-    let matrix = this.props.matrix.slice(0)
-    let rowLen = matrix.length;
-    let colLen = matrix[0].length;
+    let newMatrix = this.props.matrix.map((arr) => {
+      return arr.slice();
+    });
+    let rowLength = newMatrix.length;
+    let colLength = newMatrix[0].length;
     let largest = 0;
     let result = 0;
-
-    for (let i = 0; i < rowLen; i++) {
-      for (let j = 0; j < colLen; j++) {
-        largest = this.fill(matrix, i,j, rowLen, colLen);
+    for (let i = 0; i < rowLength; i++) {
+      for (let j = 0; j < colLength; j++) {
+        largest = this.fill(newMatrix.slice(), i, j);
         result = (largest > result) ? largest : result;
       }
     }
-    console.log(result);
-  }
-  //  [ j - 1 ][ k - 1 ]
-  //  [ j - 1 ][ k ]
-  //  [ j - 1 ][ k + 1 ]
-  //  [ j ][ k - 1]
-  //  [ j ][ k + 1 ]
-  //  [ j + 1][k - 1 ]
-  //  [ j + 1 ][ k ]
-  //  [ j + 1 ][ k + 1 ]
-
-  renderScore() {
-    return <span>1000</span>
+    return <div>{result}</div>
   }
 
   render() {
     return (
       <div className='score'>
-        <button onClick={this.processData}> PROCESS </button>
+        {this.processData()}
       </div>
     )
   }

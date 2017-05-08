@@ -26,7 +26,6 @@ class App extends Component {
   toggleTile(rIndex, cIndex) {
     let newMatrix = this.state.matrix.slice()
     newMatrix[rIndex][cIndex] === 0 ? newMatrix[rIndex][cIndex] = 1 : newMatrix[rIndex][cIndex] = 0
-    debugger
     this.setState({
       matrix: newMatrix
     })
@@ -54,10 +53,10 @@ class App extends Component {
       <div className="App">
         <div>
           <MatrixCreator handleClick={this.handleClick} />
-          <Matrix matrix={passMatrixMatrix} toggleTile={this.toggleTile} />
+          <Matrix matrix={[...this.state.matrix]} toggleTile={this.toggleTile} />
         </div>
         <div>
-          <MatrixScore matrix={passScoreMatrix} />
+          <MatrixScore matrix={[...this.state.matrix]} />
         </div>
       </div>
     );
