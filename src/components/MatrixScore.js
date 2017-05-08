@@ -10,12 +10,12 @@ class MatrixScore extends React.Component {
   }
 
   fill(matrix, i, j, rowLen, colLen) {
-    let arr = matrix.slice(0)
+    let arr = matrix.slice()
     if (i < 0 || i >= rowLen || j < 0 || j >= colLen) {
       return 0;
     }
     else if (arr[i][j]) {
-      arr[i][j] = 2;
+      arr[i][j] = 0;
       return 1 + this.fill(arr, i-1, j, rowLen, colLen)
       + this.fill(arr, i, j-1, rowLen, colLen)
       + this.fill(arr, i-1, j-1, rowLen, colLen)
@@ -37,7 +37,7 @@ class MatrixScore extends React.Component {
 
     for (let i = 0; i < rowLen; i++) {
       for (let j = 0; j < colLen; j++) {
-        largest = this.fill(matrix, i, j, rowLen, colLen);
+        largest = this.fill(matrix, i,j, rowLen, colLen);
         result = (largest > result) ? largest : result;
       }
     }

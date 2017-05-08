@@ -8,8 +8,8 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props)
-    let defaultRows = 0
-    let defaultColumns = 0
+    let defaultRows = 4
+    let defaultColumns = 4
     let defaultMatrix = this.createMatrix(defaultRows, defaultColumns)
     this.state = {
       matrix: defaultMatrix
@@ -50,15 +50,16 @@ class App extends Component {
 
 
   render() {
-    let passMatrix = [].concat(this.state.matrix)
+    let passScoreMatrix = [].concat(this.state.matrix)
+    let passMatrixMatrix = [].concat(this.state.matrix)
     return (
       <div className="App">
         <div>
           <MatrixCreator handleClick={this.handleClick} />
-          <Matrix matrix={this.state.matrix} toggleTile={this.toggleTile} />
+          <Matrix matrix={passMatrixMatrix} toggleTile={this.toggleTile} />
         </div>
         <div>
-          <MatrixScore matrix={passMatrix} />
+          <MatrixScore matrix={passScoreMatrix} />
         </div>
       </div>
     );
