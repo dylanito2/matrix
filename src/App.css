@@ -2,35 +2,48 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+.btn-sq-sm {
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.padding {
+  padding: 25px;
 }
 
-.App-intro {
-  font-size: large;
+.form-container {
+  width: 100%
+}
+
+.input-fields {
+  display: inline-block;
+  width: 60%;
+  margin-bottom: 15px;
+}
+
+.input-labels {
+  min-width: 75px;
+  display: inline-block;
+  width: 15%;
+}
+
+.btn-create {
+  /*margin-top: 15px;*/
+  margin-bottom: 15px;
 }
 
 .score {
-  position: fixed;
+  padding: 10px;
+  font-size: 24px;
   color: red;
 }
 
 .matrix {
   width: 100%;
   height: 100%;
-  cursor: pointer;
-}
+  margin-bottom: 30px;
 
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

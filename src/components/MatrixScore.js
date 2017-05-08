@@ -5,32 +5,34 @@ class MatrixScore extends React.Component {
 
   constructor(props) {
     super(props)
-    this.processData = this.processData.bind(this)
+    this.countCells = this.countCells.bind(this)
   }
 
-  fill(matrix, i, j) {
+  find(matrix, i, j) {
 
     let rowLength = matrix.length;
     let colLength = matrix[0].length;
+
     if (i < 0 || i >= rowLength || j < 0 || j >= colLength) {
       return 0
     }
+
     else if (matrix[i][j]) {
 
       matrix[i][j] = 0;
-      return 1 + this.fill(matrix, i-1, j)
-      + this.fill(matrix, i, j-1)
-      + this.fill(matrix, i-1, j-1)
-      + this.fill(matrix, i+1, j)
-      + this.fill(matrix, i, j+1)
-      + this.fill(matrix, i+1, j+1)
-      + this.fill(matrix, i+1, j-1)
-      + this.fill(matrix, i-1, j+1);
+      return 1 + this.find(matrix, i-1, j)
+      + this.find(matrix, i, j-1)
+      + this.find(matrix, i-1, j-1)
+      + this.find(matrix, i+1, j)
+      + this.find(matrix, i, j+1)
+      + this.find(matrix, i+1, j+1)
+      + this.find(matrix, i+1, j-1)
+      + this.find(matrix, i-1, j+1);
     }
     return 0
   }
 
-  processData() {
+  countCells() {
     let newMatrix = this.props.matrix.map((arr) => {
       return arr.slice();
     });
@@ -40,7 +42,7 @@ class MatrixScore extends React.Component {
     let result = 0;
     for (let i = 0; i < rowLength; i++) {
       for (let j = 0; j < colLength; j++) {
-        largest = this.fill(newMatrix.slice(), i, j);
+        largest = this.find(newMatrix.slice(), i, j);
         result = (largest > result) ? largest : result;
       }
     }
@@ -49,8 +51,11 @@ class MatrixScore extends React.Component {
 
   render() {
     return (
-      <div className='score'>
-        {this.processData()}
+      <div>
+        The largest region is:
+        <div className='score'>
+          {this.countCells()}
+        </div>
       </div>
     )
   }

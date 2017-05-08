@@ -1,8 +1,8 @@
 import React from 'react'
 
 const MatrixTile = (props) => (
-  
-  <span onClick={props.onClick}>{props.tile}</span>
+
+  <span className=' btn btn-sq-sm' onClick={props.onClick}>{props.tile}</span>
 )
 
 export default MatrixTile

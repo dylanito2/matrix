@@ -8,8 +8,8 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props)
-    let defaultRows = 4
-    let defaultColumns = 4
+    let defaultRows = 10
+    let defaultColumns = 10
     let defaultMatrix = this.createMatrix(defaultRows, defaultColumns)
     this.state = {
       matrix: defaultMatrix
@@ -37,26 +37,25 @@ class App extends Component {
     rows = parseInt(rows, 10)
     cols = parseInt(cols, 10)
 
-    if (cols <= 10 && rows <= 10) {
+    if (cols <= 25 && rows <= 25) {
       this.setState({
         matrix: this.createMatrix(rows, cols)
       })
     }
   }
 
-
-
   render() {
-    let passScoreMatrix = [].concat(this.state.matrix)
-    let passMatrixMatrix = [].concat(this.state.matrix)
+
     return (
-      <div className="App">
-        <div>
-          <MatrixCreator handleClick={this.handleClick} />
-          <Matrix matrix={[...this.state.matrix]} toggleTile={this.toggleTile} />
-        </div>
-        <div>
-          <MatrixScore matrix={[...this.state.matrix]} />
+      <div className="container">
+        <div className='row padding'>
+          <div className='col-md-9'>
+            <MatrixCreator handleClick={this.handleClick} />
+            <Matrix matrix={this.state.matrix} toggleTile={this.toggleTile} />
+          </div>
+          <div className='col-md-3'>
+            <MatrixScore matrix={this.state.matrix} />
+          </div>
         </div>
       </div>
     );

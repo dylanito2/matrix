@@ -5,8 +5,8 @@ class MatrixCreator extends React.Component {
   constructor() {
     super()
     this.state = {
-      rows: 4,
-      columns: 4
+      rows: 10,
+      columns: 10
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCreate = this.handleCreate.bind(this)
@@ -25,10 +25,16 @@ class MatrixCreator extends React.Component {
 
   render() {
     return (
-      <div>
-        R: <input type='text' name='rows' value={this.state.rows} onChange={this.handleChange} />
-        C: <input type='text' name='columns' value={this.state.columns} onChange={this.handleChange} />
-        <button onClick={this.handleCreate}>Create Matrix</button>
+      <div className='form-container'>
+        <div className='input-labels'>
+          <div>Rows: </div>
+          <div>Columns: </div>
+        </div>
+        <div className='input-fields'>
+          <div><input type='text' name='rows' value={this.state.rows} onChange={this.handleChange} /></div>
+          <div><input type='text' name='columns' value={this.state.columns} onChange={this.handleChange} /></div>
+        </div>
+        <div><input type='submit' value='Resize Matrix' className='btn-create' onClick={this.handleCreate} /></div>
       </div>
     )
   }
