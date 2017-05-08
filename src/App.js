@@ -15,9 +15,7 @@ class App extends Component {
       matrix: defaultMatrix
     }
 
-
     this.toggleTile = this.toggleTile.bind(this)
-
     this.handleClick = this.handleClick.bind(this)
   }
 
