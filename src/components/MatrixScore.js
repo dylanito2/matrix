@@ -10,8 +10,8 @@ class MatrixScore extends React.Component {
 
   find(matrix, i, j) {
 
-    let rowLength = matrix.length;
-    let colLength = matrix[0].length;
+    let rowLength = matrix.length
+    let colLength = matrix[0].length
 
     if (i < 0 || i >= rowLength || j < 0 || j >= colLength) {
       return 0
@@ -27,23 +27,23 @@ class MatrixScore extends React.Component {
       + this.find(matrix, i, j+1)
       + this.find(matrix, i+1, j+1)
       + this.find(matrix, i+1, j-1)
-      + this.find(matrix, i-1, j+1);
+      + this.find(matrix, i-1, j+1)
     }
     return 0
   }
 
   countCells() {
     let newMatrix = this.props.matrix.map((arr) => {
-      return arr.slice();
+      return arr.slice()
     });
-    let rowLength = newMatrix.length;
-    let colLength = newMatrix[0].length;
-    let largest = 0;
-    let result = 0;
+    let rowLength = newMatrix.length
+    let colLength = newMatrix[0].length
+    let largest = 0
+    let result = 0
     for (let i = 0; i < rowLength; i++) {
       for (let j = 0; j < colLength; j++) {
-        largest = this.find(newMatrix.slice(), i, j);
-        result = (largest > result) ? largest : result;
+        largest = this.find(newMatrix.slice(), i, j)
+        result = (largest > result) ? largest : result
       }
     }
     return <div>{result}</div>
