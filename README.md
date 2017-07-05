@@ -1,6 +1,6 @@
 MoneyLion Connected Cells In a Grid Code Challenge
 
-Build with React
+Built with React
 
 Demo: http://dylanbrevis-matrix.surge.sh
 
